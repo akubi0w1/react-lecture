@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './assets/css/App.css'
+import Container from './components/Container';
+import Header from './components/Header'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <>
+    <Header />
+    <Container items={TODO_LIST}/>
+  </>
+);
 
 export default App;
+
+// sample data
+const TODO_LIST = [
+  {
+    id: 1,
+    todo: 'something',
+    isDone: false,
+  },
+  {
+    id: 2,
+    todo: 'something',
+    isDone: false,
+  },
+  {
+    id: 3,
+    todo: 'something',
+    isDone: false,
+  },
+  {
+    id: 4,
+    todo: 'something',
+    isDone: true,
+  },
+  {
+    id: 5,
+    todo: 'something',
+    isDone: true,
+  },
+]
