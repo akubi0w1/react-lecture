@@ -1,38 +1,53 @@
 import React from 'react';
 
-const Container = (props) => {
+class Container extends React.Component {
   // props = src/App.jsのTODO_LIST
-  const itemList = [
-    {
-      title: "todo",
-      items: props.items.filter(todo => !todo.isDone)
-    },
-    {
-      title: "done",
-      items: props.items.filter(todo => todo.isDone)
+  constructor(props) {
+    // コンポーネントがレンダリングされた時一回だけ呼ばれる
+    super(props)
+    this.state = {
+      input: "",
+      items: props.items,
+      counter: props.items.length + 1,
     }
-  ]
+  }
 
-  return (
-    <div className="container-wrapper">
-      <div className="container">
-        <TodoForm />
-        {
-          itemList.map(elem => (
-            <TodoList 
-              key={elem.title}
-              title={elem.title}
-              items={elem.items} />
-          ))
-        }
+  // クラスコンポーネントはrender()を持つ
+  render() {
+    const itemList = [
+      {
+        title: "todo",
+        items: this.state.items.filter(todo => !todo.isDone)
+      },
+      {
+        title: "done",
+        items: this.state.items.filter(todo => todo.isDone)
+      }
+    ]
+
+    return (
+      <div className="container-wrapper">
+        <div className="container">
+          {/* stateを子コンポーネントに渡します */}
+          <TodoForm value={this.state.input}/>
+          {
+            itemList.map(elem => (
+              <TodoList
+                key={elem.title}
+                title={elem.title}
+                items={elem.items} />
+            ))
+          }
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 };
 
-const TodoForm = () => (
+const TodoForm = (props) => (
   <form className="form" method="POST">
-    <input type="text" name="todo" autoComplete="off" />
+    {/* valueをContainerコンポーネントのstateで管理します */}
+    <input type="text" name="todo" autoComplete="off" value={props.value} />
     <button type="submit" className="btn btn-primary">ADD</button>
   </form>
 );
