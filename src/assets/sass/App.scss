@@ -1,0 +1,109 @@
+$main-color: #1D2F49;
+$base-color: #E8F7EE;
+$accent-color: #00A5E0;
+$danger-color: #D81E5B;
+$sub-color: #cccccc;
+
+html {
+  margin: 0;
+  background-color: $base-color;
+  color: $main-color;
+}
+
+body {
+  margin: 0;
+}
+
+.btn {
+  padding: 3px 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  &-lg {
+    width: 100%;
+  }
+  &:hover {
+    opacity: .7;
+  }
+  &-primary {
+    color: $base-color;
+    background-color: $accent-color;
+    border-color: $accent-color;
+  }
+  &-secondary {
+    color: $base-color;
+    background-color: #999999;
+    border-color: #999999;
+  }
+  &-danger {
+    color: $base-color;
+    background-color: $danger-color;
+    border-color: $danger-color;
+  }
+}
+
+.table-title {
+  font-size: 1.5em;
+  font-weight: 600;
+
+}
+
+.header {
+  background-color: $accent-color;
+  color: $base-color;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.container-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 70%;
+  // background-color: red;
+  & > * {
+    margin-top: 20px;
+  }
+}
+
+.form {
+  input[type=text] {
+    color: $main-color;
+    // width: 100%;
+    width: 50%;
+    box-sizing: border-box;
+    border: 1px solid $sub-color;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.todo-list {
+  td {
+    padding: 5px 8px;
+  }
+}
+
+// .dialog {
+//   list-style: none;
+//   margin-bottom: 0;
+//   padding: 0;
+//   background-color: #ffffff;
+//   box-sizing: border-box;
+//   // border: 1px solid $sub-color;
+//   border-radius: 5px;
+//   .message {
+//     padding: 10px;
+//     border-bottom: 1px solid $sub-color;
+//     &:last-child {
+//       border-bottom: 0;
+//     }
+//   }
+// }

@@ -1,0 +1,86 @@
+html {
+  margin: 0;
+  background-color: #E8F7EE;
+  color: #1D2F49;
+}
+
+body {
+  margin: 0;
+}
+
+.btn {
+  padding: 3px 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.btn-lg {
+  width: 100%;
+}
+
+.btn:hover {
+  opacity: .7;
+}
+
+.btn-primary {
+  color: #E8F7EE;
+  background-color: #00A5E0;
+  border-color: #00A5E0;
+}
+
+.btn-secondary {
+  color: #E8F7EE;
+  background-color: #999999;
+  border-color: #999999;
+}
+
+.btn-danger {
+  color: #E8F7EE;
+  background-color: #D81E5B;
+  border-color: #D81E5B;
+}
+
+.table-title {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.header {
+  background-color: #00A5E0;
+  color: #E8F7EE;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.container-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 70%;
+}
+
+.container > * {
+  margin-top: 20px;
+}
+
+.form input[type=text] {
+  color: #1D2F49;
+  width: 50%;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.form input[type=text]:focus {
+  outline: none;
+}
+
+.todo-list td {
+  padding: 5px 8px;
+}
