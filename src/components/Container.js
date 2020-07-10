@@ -26,6 +26,10 @@ class Container extends React.Component {
 
   // submitされたらstate.itemsを更新する
   handleSubmit(value) {
+    if (!value) {
+      console.log("empty input");
+      return
+    }
     const newItem = {
       id: this.state.counter,
       todo: value,
