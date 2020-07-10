@@ -1,5 +1,8 @@
 import React from 'react';
 
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
+
 class Container extends React.Component {
   // props = src/App.jsのTODO_LIST
   constructor(props) {
@@ -93,92 +96,5 @@ class Container extends React.Component {
     );
   }
 };
-
-// handlerが必要なのでクラスにしなくちゃあかんわ
-class TodoForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // ここでbindしてあげないと、handle内でthisが使えません
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(e) {
-    this.props.handleChange(e.target.value);
-  }
-
-  handleSubmit(e) {
-    e.preventDefault() // POSTリクエストが飛んでいくのを阻止する
-    this.props.handleSubmit(this.props.value)
-  }
-
-  render() {
-    return (
-      // submitハンドラを指定
-      <form className="form" method="POST" onSubmit={this.handleSubmit}>
-        {/* changeハンドラを指定 */}
-        <input type="text" name="todo" autoComplete="off" value={this.props.value} onChange={this.handleChange} />
-        <button type="submit" className="btn btn-primary">ADD</button>
-      </form>
-    );
-  }
-}
-
-const TodoList = (props) => (
-  // props = { title, items }
-  // items = [ { id, todo, isDone }, ... ]
-  <div>
-    <label className="table-title">{props.title}</label>
-    <table className="todo-list">
-      <tbody>
-        {
-          // さらにハンドラを渡す
-          props.items.map(item => (
-            <TodoItem 
-              key={item.id}
-              item={item}
-              handleSwitch={props.handleSwitch}
-              handleDelete={props.handleDelete}/>
-          ))
-        }
-      </tbody>
-    </table>
-  </div>
-);
-
-// ハンドラ定義のためにclassにしなきゃあかんわ
-class TodoItem extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleSwitch = this.handleSwitch.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  handleSwitch(e) {
-    this.props.handleSwitch(this.props.item.id);
-  }
-
-  handleDelete(e) {
-    this.props.handleDelete(this.props.item.id);
-  }
-
-  render() {
-    return (
-      <tr>
-        <td>{this.props.item.todo}</td>
-        {
-          !this.props.item.isDone
-            // 各ボタンにハンドラをしてする
-            ? <td><button className="btn btn-primary" onClick={this.handleSwitch}>done</button></td>
-            : <>
-              <td><button className="btn btn-secondary" onClick={this.handleSwitch}>todo</button></td>
-              <td><button className="btn btn-danger" onClick={this.handleDelete}>delete</button></td>
-            </>
-        }
-      </tr>
-    );
-  }
-}
 
 export default Container;
