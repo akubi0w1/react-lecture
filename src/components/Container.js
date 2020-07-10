@@ -4,20 +4,36 @@ import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
 class Container extends React.Component {
-  // props = src/App.jsのTODO_LIST
   constructor(props) {
     super(props);
+    // stateの初期化を変更
     this.state = {
       input: "",
-      items: props.items,
-      counter: props.items.length + 1,
+      items: [],
+      counter: 0,
     };
 
-    // ここでbindしてあげないと、handle内でthisが使えません
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  // コンポーネントがマウントされた時に実行される
+  componentDidMount() {
+    this.setState({
+      items: this.props.items,
+      counter: this.props.items.length + 1,
+    });
+  }
+
+  // コンポーネントがアンマウントされる時に実行される
+  componentWillUnmount() {
+    this.setState({
+      items: [],
+      counter: 0,
+      input: '',
+    });
   }
 
   // inputフィールドの値の変更をstateに反映する
@@ -29,6 +45,10 @@ class Container extends React.Component {
 
   // submitされたらstate.itemsを更新する
   handleSubmit(value) {
+    if (!value) {
+      console.log("empty input");
+      return
+    }
     const newItem = {
       id: this.state.counter,
       todo: value,
